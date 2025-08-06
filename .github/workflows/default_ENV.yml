@@ -1,0 +1,21 @@
+name: List all the Default Environment Variables of GitHub Vars
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+    ubantu-env-variable:
+      runs-on: ubuntu-latest
+      steps:
+          - run: env
+
+    window-env-variable:
+      runs-on: ubuntu-latest
+      steps:
+        - run: env
+
+    macos-env-variable:
+      runs-on: macos-latest
+      steps:
+        - run: env
