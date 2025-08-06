@@ -1,0 +1,31 @@
+name: Custome Environment Variables Workflow
+
+on:
+  workflow_dispatch:
+
+# top label variable , any job or anything can access this variable
+env:
+  DAY_OF_WEEK: "Monday"
+  testvar: "test variable-1"
+
+jobs:
+  main-job:
+    name: "Main Job with Custom Env Vars"
+    runs-on: ubuntu-latest
+
+    # Job label variable , only jobs can access this variable
+    env:
+      greeting: "Hello"
+      testvar: "test variable-2"
+
+    steps:
+      - name: print environment variables
+        run: |
+          echo "DAY_OF_WEEK: $DAY_OF_WEEK"
+          echo "greeting: $greeting"
+          echo "testvar: $testvar" # This will print the job label variable, not the top label variable
+          echo "This is a custom environment top label ${{env.testvar}}."
+
+        env:
+          finst_name: "Shah"
+          testvar: "test variable-3" # This will override the job label variable
