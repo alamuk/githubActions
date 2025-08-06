@@ -1,0 +1,24 @@
+name: "customer variable by echo"
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  custom-env-var:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set the value with variblabe 
+        id: step_one
+        run: |
+            echo "state_action=yellow" >> $GITHUB_ENV
+           
+
+      - name: Use the value of the variable
+        id: step_two
+        run: |
+            echo "${{env.state_action}}"
+            echo "The value of the variable is $state_action"
+            
+      
