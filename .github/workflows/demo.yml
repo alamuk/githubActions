@@ -1,4 +1,3 @@
-
 name: A Basic web application workflow
 
 on:
@@ -11,19 +10,16 @@ on:
 
   workflow_dispatch:
 
-  
-
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Run a line-line of code 
+      - name: Run a line-line of code
         run: echo "Hello, World!"
-
 
       - name: Run a multi-line script
         run: |
@@ -32,18 +28,18 @@ jobs:
           echo "Each command is executed in sequence."
 
   build-api:
-    runs-on : windows-latest
+    runs-on: windows-latest
     steps:
       - run: echo "building Api."
 
   build-db:
     needs: build
-    runs-on : windows-latest
+    runs-on: windows-latest
     steps:
       - run: echo "hello windows."
 
   package:
-    needs: [build, build-db, build-api]
+    needs: [build-db, build-api]
     runs-on: macos-latest
     steps:
       - run: echo "This is the packaging step that depends on previous jobs."
